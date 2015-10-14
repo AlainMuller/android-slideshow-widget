@@ -67,33 +67,6 @@ allprojects {
     repositories {
         mavenCentral()
     }
-
-    /*
-     * Gets a property from a configuration file. That file should define the following properties:
-     * - storeFile
-     * - storePassword
-     * - keyAlias
-     * - keyPassword
-     */
-    ext.getSigningProperties = {
-        def Properties properties  = new Properties();
-        try {
-            def String path = System.getenv("ANDROID_PRIVATE_PROPERTIES_PATH")
-            def File file = new File(path + "/" + rootProject.name + "/keystore.properties");
-            properties.load(new FileInputStream(file))
-            properties.put("storeFile", path + "/" + rootProject.name + "/project.keystore")
-            properties.put("canSignRelease", true)
-        }
-        catch (ignored) {
-            // You can put your own properties here if you want
-            properties.put("storeFile", "")
-            properties.put("storePassword", "")
-            properties.put("keyAlias", "")
-            properties.put("keyPassword", "")
-            properties.put("canSignRelease", false)
-        }
-        return properties;
-    }
 }
 
 println 'Building version #' + getAppVersionCode() + ' : ' + getAppVersionName()

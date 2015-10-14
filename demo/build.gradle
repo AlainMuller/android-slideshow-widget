@@ -1,21 +1,8 @@
 apply plugin: 'android'
 
-ext.signingProperties = getSigningProperties()
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
-    signingConfigs {
-        release {
-            if (signingProperties['canSignRelease']) {
-                storeFile file(signingProperties['storeFile'])
-                storePassword signingProperties['storePassword']
-                keyAlias signingProperties['keyAlias']
-                keyPassword signingProperties['keyPassword']
-            }
-        }
-    }
 
     defaultConfig {
         applicationId "com.marvinlabs.widget.slideshow.demo"
@@ -29,7 +16,6 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.release
         }
     }
 }
