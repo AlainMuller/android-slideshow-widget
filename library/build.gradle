@@ -10,7 +10,6 @@ buildscript {
 
 apply plugin: 'android-library'
 apply plugin: 'android-maven'
-apply plugin: 'signing'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -77,10 +76,6 @@ artifacts {
 task wrapper(type: Wrapper) {
     description "Generates the gradle wrapper"
     gradleVersion = "1.10"
-}
-
-signing {
-    sign configurations.archives
 }
 
 uploadArchives {
