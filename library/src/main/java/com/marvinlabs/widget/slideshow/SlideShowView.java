@@ -7,13 +7,11 @@ import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.StateListDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -680,12 +678,6 @@ public class SlideShowView extends RelativeLayout implements View.OnClickListene
         int viewType = adapter.getItemViewType(position);
         recycledViews.put(viewType, view);
         view.destroyDrawingCache();
-
-        if (view instanceof ImageView) {
-            ((ImageView) view).setImageDrawable(null);
-        }
-
-        Log.d("SlideShowView", "View added to recycling bin: " + view);
 
         // The adapter can recycle some memory with discard slide
         adapter.discardSlide(position);
