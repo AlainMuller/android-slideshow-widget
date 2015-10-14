@@ -3,8 +3,8 @@ apply plugin: 'android'
 ext.signingProperties = getSigningProperties()
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     signingConfigs {
         release {
@@ -18,16 +18,16 @@ android {
     }
 
     defaultConfig {
-        packageName "com.marvinlabs.widget.slideshow.demo"
+        applicationId "com.marvinlabs.widget.slideshow.demo"
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 23
         versionCode getAppVersionCode()
         versionName getAppVersionName()
     }
 
     buildTypes {
         release {
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.release
         }
