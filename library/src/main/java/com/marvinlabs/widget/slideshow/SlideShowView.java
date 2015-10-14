@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -64,7 +65,7 @@ public class SlideShowView extends RelativeLayout implements View.OnClickListene
     private OnSlideClickListener slideClickListener;
 
     // A selector to show when the view is clicked
-    private StateListDrawable onClickedDrawable;
+    private Drawable onClickedDrawable;
 
     // Watch the adapter data
     private DataSetObserver adapterObserver = new DataSetObserver() {
@@ -151,12 +152,12 @@ public class SlideShowView extends RelativeLayout implements View.OnClickListene
 
         // Clicked drawable
         try {
-            onClickedDrawable = (StateListDrawable) a.getDrawable(R.styleable.SlideShowView_selector);
+            onClickedDrawable = a.getDrawable(R.styleable.SlideShowView_selector);
         } catch (Exception e) { /* ignored */ }
 
         if (onClickedDrawable == null) {
             TypedArray themeAttrs = context.getTheme().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
-            onClickedDrawable = (StateListDrawable) themeAttrs.getDrawable(0);
+            onClickedDrawable = themeAttrs.getDrawable(0);
         }
 
         // Playlist stuff
