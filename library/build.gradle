@@ -39,18 +39,18 @@ android.libraryVariants.all { variant ->
     if (name.equals(com.android.builder.core.BuilderConstants.DEBUG)) {
         return; // Skip debug builds.
     }
-    task("javadoc${variant.name.capitalize()}", type: Javadoc) {
-        description "Generates Javadoc for $variant.name."
-        source = variant.javaCompile.source
-        ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
-    }
-
-    task("bundleJavadoc${variant.name.capitalize()}", type: Jar) {
-        description "Bundles Javadoc into zip for $variant.name."
-        classifier = "javadoc"
-        from tasks["javadoc${variant.name.capitalize()}"]
-    }
+//    task("javadoc${variant.name.capitalize()}", type: Javadoc) {
+//        description "Generates Javadoc for $variant.name."
+//        source = variant.javaCompile.source
+//        ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+//        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+//    }
+//
+//    task("bundleJavadoc${variant.name.capitalize()}", type: Jar) {
+//        description "Bundles Javadoc into zip for $variant.name."
+//        classifier = "javadoc"
+//        from tasks["javadoc${variant.name.capitalize()}"]
+//    }
 }
 
 task sourcesJar(type: Jar) {
@@ -62,14 +62,13 @@ task jar(type: Jar) {
     from 'build/classes/release'
 }
 
-task javadocJar(type: Jar, dependsOn: "javadocRelease") {
-    classifier = 'javadoc'
-    from 'build/docs/javadoc'
-}
+//task javadocJar(type: Jar, dependsOn: "javadocRelease") {
+//    classifier = 'javadoc'
+//    from 'build/docs/javadoc'
+//}
 
 artifacts {
     archives sourcesJar
-    archives javadocJar
     archives jar
 }
 
